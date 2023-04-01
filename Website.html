@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="shortcut icon" type="image/x-icon" href="logo.png" />
+    <title>SH.M.T Mehmet Isai</title>
+    <style>
+   @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;800&display=swap');
+   @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;800&family=Varela+Round&display=swap');
+   @import url('https://fonts.googleapis.com/css2?family=Crete+Round:ital@1&display=swap');
+   @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@600&display=swap');
+      body {
+        background-color: #020c29;
+        overflow-x: hidden;
+       overflow-y: hidden;
+        margin:0;
+        padding:0;
+        height: 100vh;
+  background: linear-gradient(to bottom, rgb(2, 39, 82), #061020);
+      }
+
+
+     .watermark {
+     position: absolute;
+     bottom: 55px;
+     left: 9px;
+     opacity: 0.07;
+     color: white;
+     font-family: 'Crete Round', serif;
+     font-size: 12px;
+    }
+
+      .navbar {
+        height: 57px;
+        width: 100%;
+        display:inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        color: white;
+        background-color: #2256a3;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        background: linear-gradient(to right, #173d75, #0b2142);
+        border-radius: 5px;
+      }
+      .clock {
+        font-family: 'Orbitron', sans-serif;
+        color: white;
+        opacity: 0.5;
+        margin-top: 5%;
+        margin-left: 2.5%;
+        margin-bottom: -15px;
+        font-size: 25px;
+      }
+      .navbar img {
+        height: 50px;
+        padding-right: 10px;
+        display: flex;
+     list-style: wrap;
+     align-items: center;
+      }
+      .navbar span {
+        font-family: 'M PLUS Rounded 1c', sans-serif;
+      border: 1px white;
+      padding-right: 3%;
+      }
+
+      .strings {
+        color: white;
+        margin: 10px;
+        font-size: 22px;
+        float: left;
+      }
+      ul {
+        list-style-type: none;
+        font-family: 'Noto Sans', sans-serif;
+        opacity: 0.5;
+      }
+
+      .announcement {
+        background-color: #2256a3;
+        color: white;
+        height: 50px;
+        width: 100%;
+        bottom: 0;
+        position: fixed;
+        text-align: center;
+        font-size: 24px;
+        background: linear-gradient(to right, #173d75, #0b2142);
+        box-shadow: 0 -5px 5px rgba(0, 0, 0, 0.3);
+        border-radius: 6px;
+      }
+
+      .announcement span {
+        display: inline-block;
+        white-space: nowrap;
+        margin: auto;
+        animation: moving-text 20s linear infinite;
+        margin-top: 10px;
+        font-family: 'Varela Round', sans-serif;
+
+      }
+
+      @keyframes moving-text {
+        from {
+          transform: translateX(250%);
+        }
+        to {
+          transform: translateX(-275%);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar">
+      <img src="logo.png" alt="logo">
+      <span>Mehmet Isai</span>
+    </div>
+    <div class="clock" id="cl">
+      1:28 PM | Ora 1,  Ndrrimi 2
+    </div>
+    <div class="strings">
+    <ul id="list">
+      <li>10/1 | Afrim Rexhepi, Informatik 2</li>
+      <li>10/2 | Fahrije Srmaxhaj, Matematik 1</li>
+      <li>10/3 | Arber Shabani, Informatik 1</li>
+      <li>10/4 | Florida Bunjaku, Salla Edukates Fizike</li>
+    </ul>
+  </div>
+    <div class="announcement">
+      <span>Welcome to Mehmet Isai!</span>
+    </div>
+    <div class="watermark">Made by Korabi X/1</div>
+  </body>
+  <script>
+    const profs = [
+			"Afrim Rexhepi",
+			"Agim Tahiri",
+			"Agron Bislimi",
+			"Ahmet Bilalli",
+			"Anila Bajrami",
+			"Arben Ramadani",
+			"Arbër Shabani",
+			"Arsim Duraku",
+			"Artan Bajrami",
+			"Astrit Korqa",
+			"Bekim Beqiri",
+			"Bekim Isufi",
+			"Blerta Hoxha",
+			"Bujar Kurteshi",
+			"Burim Dërmaku",
+			"Enver Xhymshiti",
+			"Fahrije Srmaxhaj",
+			"Fazli Srmaxhaj",
+			"Feriz Trstena",
+			"Flora Maliqi",
+			"Florida Bunjaku",
+			"Florim Bajrami",
+			"Gani Krasniqi",
+			"Hamide Ejupi",
+			"Hata Shkodra",
+			"Ibrahim Isufi",
+			"Ibrahim Shkodra",
+			"Ilir Elezi",
+			"Ismail Shkodra",
+			"Kaltrina Shala",
+			"Labinota Shabiu",
+			"Lulijeta Latifi",
+			"Lulijeta Shkodra",
+			"Lulzim Bajrami",
+			"Lulzim Jahiu",
+			"Magribe Neziri",
+			"Mehmet Rapuca",
+			"Gojarta Neziri",
+			"Mehmet Shaqiri",
+			"Mexhid Cani",
+			"Minavere Berisha",
+			"Muhamed Sadriu",
+			"Mustafë Hoxha",
+			"Nagip Krasniqi",
+			"Naser Morina",
+			"Nevzad Isufi",
+			"Nexhmije Hajrullahu",
+			"Rabije Demolli",
+			"Sabedin Veseli",
+			"Sadushe Agaj",
+			"Sali Halili",
+			"Sefer Kastrati",
+			"Shqipe Aliu",
+			"Shqipe Nahiu",
+			"Vedat Kastrati",
+			"Xhabir Ymeri",
+			"Xhafer Xhelili",
+			"Xhevahire Bislimi",
+			"Xhevde Agaj",
+			"Xhylferije Veliu",
+			"Yllka Qerimi"
+		]
+    let data = {}
+const list = document.getElementById("list")
+const shifts = [{
+        name: 'Ndërrimi 1',
+        classes: [{
+                startTime: '08:00',
+                endTime: '08:50'
+            },
+            {
+                startTime: '08:55',
+                endTime: '09:45'
+            },
+            {
+                startTime: '09:50',
+                endTime: '10:40'
+            },
+            {
+                startTime: '10:45',
+                endTime: '11:35'
+            },
+            {
+                startTime: '11:40',
+                endTime: '12:30'
+            },
+            {
+                startTime: '12:35',
+                endTime: '13:25'
+            },
+            {
+                startTime: '13:30',
+                endTime: '14:20'
+            }
+        ],
+        startTime: '08:00',
+        endTime: '14:20'
+    },
+    {
+        name: 'Ndërrimi 2',
+        classes: [{
+                startTime: '14:00',
+                endTime: '14:50'
+            },
+            {
+                startTime: '14:55',
+                endTime: '15:45'
+            },
+            {
+                startTime: '15:50',
+                endTime: '16:40'
+            },
+            {
+                startTime: '16:45',
+                endTime: '17:35'
+            },
+            {
+                startTime: '17:40',
+                endTime: '18:30'
+            },
+            {
+                startTime: '18:35',
+                endTime: '19:25'
+            },
+            {
+                startTime: '19:30',
+                endTime: '20:20'
+            }
+        ],
+        startTime: '14:00',
+        endTime: '20:20'
+    }
+];
+    data.two = {
+        "10/1": {
+            1: [17, 31, 1, 1, 61, 1, 61],
+            2: [43, 30, 7, 31, 8, 7, 7],
+            3: [34, 34, 60, 6, 17, 6, 0],
+            4: [21, 21, 43, 46, 22, 58, 46],
+            5: [17, 60, 46, 22, 1, 0, 0]
+        },
+        "10/2": {
+            1: [43, 17, 1, 1, 61, 1, 61],
+            2: [43, 30, 7, 31, 8, 7, 7],
+            3: [34, 34, 60, 6, 17, 6, 0],
+            4: [21, 21, 43, 46, 22, 58, 46],
+            5: [17, 60, 46, 22, 1, 0, 0]
+        }
+    }
+   // setInterval(() => {
+        function getNextDate(dayOfWeek, hour, minute, second = 0) {
+            const now = new Date();
+            let date = new Date(now);
+            date.setDate(now.getDate() + (dayOfWeek + 7 - now.getDay()) % 7);
+            date.setHours(hour, minute, second, 0);
+            return date;
+        }
+
+        function getprof(day, hour, _class) {
+            return [data.two[_class][day][hour - 1], profs[data.two[_class][day][hour - 1] - 1]]
+        }
+        let now = new Date();
+        now = getNextDate(1, 14, 0, 0)
+        const dayOfWeek = now.getDay();
+        const time = now.toLocaleTimeString('en-US', {
+            hour12: false
+        });
+        const currentShift = time >= shifts[0].startTime && time < shifts[1].startTime ? shifts[0] : shifts[1];
+        const currentShiftName = currentShift.name;
+        let currentClass = null;
+        for (let i = 0; i < currentShift.classes.length; i++) {
+            if (time >= currentShift.classes[i].startTime && time < currentShift.classes[i].endTime) {
+                currentClass = i + 1;
+                break;
+            }
+        }
+        let onbreak = false;
+        const startTime = new Date(now);
+        startTime.setHours(15, 10);
+        const endTime = new Date(now);
+        endTime.setHours(15, 30);
+        if (now >= startTime && now < endTime) {
+            onbreak = true
+        }
+        startTime.setHours(15, 10);
+        endTime.setHours(15, 30);
+        if (now >= startTime && now < endTime) {
+            onbreak = true
+        }
+
+        const cl = document.getElementById("cl")
+        const cts = now.toLocaleTimeString([], {
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: true
+        });
+        if (now.getDay() != 0 && now.getDay() != 6) {
+            if (onbreak) {
+                cl.innerHTML = `${cts} | Pushim, ${currentShiftName}`
+            } else {
+                if (currentClass) {
+                    cl.innerHTML = `${cts} | Ora ${currentClass}, ${currentShiftName}`
+                } else {
+                    cl.innerHTML = `${cts} | Mësimi Ka Mbaruar!`
+                }
+            }
+        } else {
+            cl.innerHTML = `${cts} | Sot nuk ka mësim!`
+        }
+        if (currentClass && (!onbreak && currentShiftName == "Ndërrimi 2")) {
+            let str = ""
+            Object.keys(data.two).forEach((key, index) => {
+                let obj = data.two[key]
+                let [prn, profname] = getprof(now.getDay(), currentClass, key)
+                str = str + `<li>${key} | ${profname}<li>\n`
+            })
+            list.innerHTML = str
+        }
+   // }, 100);
+    //-----------------------------------------------------------------------------------------------\\
+
+    </script>
+</html>

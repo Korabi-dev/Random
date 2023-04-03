@@ -606,7 +606,7 @@ const shifts = [{
           let has = data.one[_class].nd1
           if(sn == "Ndërrimi 1" && !has) return [null,null];
           if(sn == "Ndërrimi 2" && has) return [null,null];
-           let num = data.one[_class][day][hour]
+           let num = data.one[_class][day][hour - 1]
             if(typeof(num) == "string") {
               let hrs = num.split("/")
               let p1 = []

@@ -593,7 +593,31 @@ const shifts = [{
       }
     }
 
+    let _k = {
+        "Ndërrimi 1":{
+            1: "Kaltrina Shala",
+            2: "Minavere Hasani",
+            3: "Sadushe Agaj",
+            4: "Sabedin Veseli",
+            5: "Ilir Elezi"
+        },
+        "Ndërrimi 2":{
+            1: "Nexhmije Hajrullahu",
+            2: "Agron Bislimi",
+            3: "Magribe Neziri",
+            4: "Rabije Demolli",
+            5: "Luljeta Shkodra"
+        }
+    }
     setInterval(() => {
+        function getk(day, nd) {
+            let kuj = _k[nd][day]
+            if(!kuj) return 
+            let nam = kuj.split(" ")[0].toLowerCase()
+            let pr = "Kujdestar:"
+            if(nam.endsWith("e") || nam.endsWith("a")) pr = "Kujdestare:"
+            return `, ${pr} ${kuj}`
+        }
         function getNextDate(dayOfWeek, hour, minute, second = 0) {
             const now = new Date();
             let date = new Date(now);
@@ -655,12 +679,13 @@ const shifts = [{
             minute: '2-digit',
             hour12: true
         });
+        const _kn = getk(now.getDay(), currentShiftName)
         if (now.getDay() != 0 && now.getDay() != 6) {
             if (onbreak) {
-                cl.innerHTML = `${cts} | Pushim, ${currentShiftName}`
+                cl.innerHTML = `${cts} | Pushim, ${currentShiftName}${_kn ? `${_kn}` : ""}`
             } else {
                 if (currentClass) {
-                    cl.innerHTML = `${cts} | Ora ${currentClass}, ${currentShiftName}`
+                    cl.innerHTML = `${cts} | Ora ${currentClass}, ${currentShiftName}${_kn ? `${_kn}` : ""}`
                 } else {
                     cl.innerHTML = `${cts} | Mësimi Ka Mbaruar!`
                 }

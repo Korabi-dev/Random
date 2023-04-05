@@ -145,7 +145,7 @@
 const maxHeight = parseInt(window.getComputedStyle(ul).getPropertyValue('max-height'));
 if (ul.scrollHeight > maxHeight) {
   const fontSize = parseInt(window.getComputedStyle(ul).getPropertyValue('font-size'));
-  ul.style.fontSize = fontSize - 1 + 'px';
+  ul.style.fontSize = fontSize - 0.5 + 'px';
 }
     }, 0.01);
     const profs = {
@@ -590,7 +590,7 @@ const shifts = [{
             return [num, pr]
         }
         let now = new Date();
-       // now = getNextDate(2, 13, 47, 0)
+      //  now = getNextDate(2, 12, 10, 0)
         const dayOfWeek = now.getDay();
         const time = now.toLocaleTimeString('en-US', {
             hour12: false
@@ -663,7 +663,14 @@ const shifts = [{
                 let obj = data.one[key]
                 let [prn, profname] = getprof(now.getDay(), currentClass, key, currentShiftName)
                 if(!profname) return;
-                str = str + `<li>${key} | ${profname}<li>\n`
+                let _toadd = ""
+                if(currentClass < 7) {
+                let [prn2, profname2] = getprof(now.getDay(), currentClass + 1, key, currentShiftName)
+                if(profname2) {
+                if(profname2 == profname) {_toadd = "🔁"} else {_toadd = `➡️ ${profname2}`}
+                }
+              }
+                str = str + `<li>${key} | ${profname}${_toadd ?  " " + _toadd : ""}<li>\n`
             })
             list.innerHTML = str
         }

@@ -23,7 +23,7 @@
      .watermark {
      position: absolute;
      bottom: 55px;
-     right: 9px;
+     left: 9px;
      color: white;
      font-family: 'Crete Round', serif;
      font-size: 12px;
@@ -51,6 +51,15 @@
         margin-bottom: -15px;
         font-size: 25px;
       }
+      .clock2 {
+        font-family: 'Orbitron', sans-serif;
+        color: white;
+        opacity: 0.5;
+        margin-top: 5%;
+        margin-left: 2.5%;
+        margin-bottom: -55px;
+        font-size: 25px;
+      }
       .navbar img {
         height: 50px;
         padding-right: 10px;
@@ -75,8 +84,8 @@
         font-family: 'Noto Sans', sans-serif;
         opacity: 0.5;
         max-height: 700px;
+        font-size: 27px;
       }
-
       .announcement {
         background-color: #2256a3;
         color: white;
@@ -91,22 +100,11 @@
         border-radius: 6px;
       }
 
-      .announcement span {
+      .announcement marquee {
         display: inline-block;
-        white-space: nowrap;
         margin: auto;
-        animation: moving-text 20s linear infinite;
         margin-top: 10px;
         font-family: 'Varela Round', sans-serif;
-
-      }
-      @keyframes moving-text {
-        from {
-          transform: translateX(250%);
-        }
-        to {
-          transform: translateX(-275%);
-        }
       }
     </style>
   </head>
@@ -123,15 +121,38 @@
     </ul>
   </div>
     <div class="announcement">
-      <span>Welcome to Mehmet Isai!</span>
+      <marquee id="marquee">Welcome To Mehmet Isai!</marquee>
     </div>
     <div class="watermark">Made by Korabi X/1</div>
   </body>
   <script>
+  const link = "https://schoolbackend-production.up.railway.app/"
+  function updateAnnouncement(n){
+    fetch(link + "get").then(async r => {
+      let txt = await r.text()
+      if(!txt.includes("false")){
+      return;
+      }
+      txt = JSON.parse(txt).content
+      if(document.getElementById("marquee").innerHTML != txt) {
+      document.getElementById("marquee").innerHTML = txt
+      if(!n) {
+        location.reload()
+      }
+    }
+      return txt;
+    }).catch(e => {
+      return null;
+    })
+  }
+  updateAnnouncement(1)
+  setInterval(updateAnnouncement, 10000);
+  </script>
+  <script>
+    document.getElementById("marquee").innerHTML = document.getElementById("marquee").innerHTML.replace(/\n/g, "").replace("<br>", "").replace("</br>", "").replace("<br/>")
     setInterval(() => {
       const ul = document.querySelector('ul');
 const maxHeight = parseInt(window.getComputedStyle(ul).getPropertyValue('max-height'));
-
 if (ul.scrollHeight > maxHeight) {
   const fontSize = parseInt(window.getComputedStyle(ul).getPropertyValue('font-size'));
   ul.style.fontSize = fontSize - 1 + 'px';
@@ -147,7 +168,7 @@ if (ul.scrollHeight > maxHeight) {
 7: "Arber Shabani",
 8: "Arsim Duraku",
 9: "Artan Bajrami",
-10: "Astrit Korqa",
+10: "Astrit Korça",
 11: "Bekim Beqiri",
 12: "Bekim Isufi",
 13: "Blerta Hoxha",
@@ -180,7 +201,7 @@ if (ul.scrollHeight > maxHeight) {
 40: "Mexhid Cani",
 41: "Minavere Berisha",
 42: "Muhamet Sadriu",
-43: "Mustaf Hoxha",
+43: "Mustafë Hoxha",
 44: "Nagip Krasniqi",
 45: "Naser Morina",
 46: "Nevzad Isufi",
@@ -203,74 +224,8 @@ if (ul.scrollHeight > maxHeight) {
 63: "Naser Behluli",
 64: "Arton Mehmeti",
 }
-    const _profs = [
-      "",
-			"Afrim Rexhepi",
-			"Agim Tahiri",
-			"Agron Bislimi",
-			"Ahmet Bilalli",
-			"Anila Bajrami",
-			"Arben Ramadani",
-			"Arbër Shabani",
-			"Arsim Duraku",
-			"Artan Bajrami",
-			"Astrit Korqa",
-			"Bekim Beqiri",
-			"Bekim Isufi",
-			"Blerta Hoxha",
-			"Bujar Kurteshi",
-			"Burim Dërmaku",
-			"Enver Xhymshiti",
-			"Fahrije Srmaxhaj",
-			"Fazli Srmaxhaj",
-			"Feriz Trstena",
-			"Flora Maliqi",
-			"Florida Bunjaku",
-			"Florim Bajrami",
-			"Gani Krasniqi",
-			"Hamide Ejupi",
-			"Hata Shkodra",
-			"Ibrahim Isufi",
-			"Ibrahim Shkodra",
-			"Ilir Elezi",
-			"Ismail Shkodra",
-			"Kaltrina Shala",
-			"Labinota Shabiu",
-			"Lulijeta Latifi",
-			"Lulijeta Shkodra",
-			"Lulzim Bajrami",
-			"Lulzim Jahiu",
-			"Magribe Neziri",
-			"Mehmet Rapuca",
-			"Gojarta Neziri",
-			"Mehmet Shaqiri",
-			"Mexhid Cani",
-			"Minavere Berisha",
-			"Muhamed Sadriu",
-			"Mustafë Hoxha",
-			"Nagip Krasniqi",
-			"Naser Morina",
-			"Nevzad Isufi",
-			"Nexhmije Hajrullahu",
-			"Rabije Demolli",
-			"Sabedin Veseli",
-			"Sadushe Agaj",
-			"Sali Halili",
-			"Sefer Kastrati",
-			"Shqipe Aliu",
-			"Shqipe Nahiu",
-			"Vedat Kastrati",
-			"Xhabir Ymeri",
-			"Xhafer Xhelili",
-			"Xhevahire Bislimi",
-			"Xhevde Agaj",
-			"Xhylferije Veliu",
-			"Yllka Qerimi",
-      "Faid Hoxha",
-      "Naser Behluli",
-      "Arton Mehmeti"
-		]
-    let data = {}
+
+ let data = {}
 const list = document.getElementById("list")
 const shifts = [{
         name: 'Ndërrimi 1',
@@ -645,7 +600,7 @@ const shifts = [{
             return [num, pr]
         }
         let now = new Date();
-      //  now = getNextDate(4, 13, 1, 0)
+       // now = getNextDate(2, 13, 47, 0)
         const dayOfWeek = now.getDay();
         const time = now.toLocaleTimeString('en-US', {
             hour12: false
@@ -656,9 +611,21 @@ const shifts = [{
         for (let i = 0; i < currentShift.classes.length; i++) {
             if (time >= currentShift.classes[i].startTime && time < currentShift.classes[i].endTime) {
                 currentClass = i + 1;
-                //break;
             }
         }
+        function getTimeDifference(time2, time1) {
+         const [hours1, minutes1] = time1.split(':');
+            const [hours2, minutes2] = time2.split(':');
+
+             const date1 = new Date();
+             date1.setHours(hours1);
+             date1.setMinutes(minutes1);
+             const date2 = new Date();
+             date2.setHours(hours2);
+             date2.setMinutes(minutes2);
+             const timeDifference = (date2.getTime() - date1.getTime()) / (1000 * 60);
+            return Math.round(timeDifference);
+            }
         let onbreak = false;
         const startTime = new Date(now);
         startTime.setHours(15, 10);
@@ -672,22 +639,29 @@ const shifts = [{
         if (now >= startTime && now < endTime) {
             onbreak = true
         }
-
         const cl = document.getElementById("cl")
-        const cts = now.toLocaleTimeString([], {
+       // const cl2 = document.getElementById("cl2")
+        let cts = now.toLocaleTimeString([], {
             hour: '2-digit',
             minute: '2-digit',
             hour12: true
         });
+        const months = ['Janar', 'Shkurt', 'Mars', 'Prill', 'Maj', 'Qershor', 'Korrik', 'Gusht', 'Shtator', 'Tetor', 'Nëntor', 'Dhjetor'];
+        const monthName = months[now.getMonth()]
+        let _toa = ""; 
+        if(!onbreak && currentClass) {
+            _toa = _toa + ` | Ora ${currentClass} mbaron në ${getTimeDifference(currentShift.classes[currentClass - 1].endTime, time)}min`
+        }
+        let cl2 = `${now.getDate()} ${monthName} ${now.getFullYear()}${_toa ? _toa : ""}`
         const _kn = getk(now.getDay(), currentShiftName)
         if (now.getDay() != 0 && now.getDay() != 6) {
             if (onbreak) {
                 cl.innerHTML = `${cts} | Pushim, ${currentShiftName}${_kn ? `${_kn}` : ""}`
             } else {
                 if (currentClass) {
-                    cl.innerHTML = `${cts} | Ora ${currentClass}, ${currentShiftName}${_kn ? `${_kn}` : ""}`
+                    cl.innerHTML = `${cl2}<br>${cts} | Ora ${currentClass}, ${currentShiftName}${_kn ? `${_kn}` : ""}`
                 } else {
-                    cl.innerHTML = `${cts} | Mësimi Ka Mbaruar!`
+                    cl.innerHTML = `${cl2}<br>${cts} | Mësimi Ka Mbaruar!`
                 }
             }
         } else {
@@ -704,7 +678,5 @@ const shifts = [{
             list.innerHTML = str
         }
     }, 100);
-    //-----------------------------------------------------------------------------------------------\\
-
     </script>
 </html>

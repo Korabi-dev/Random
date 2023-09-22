@@ -109,7 +109,7 @@
     <div class="announcement">
       <marquee id="marquee">Welcome To Mehmet Isai!</marquee>
     </div>
-    <div class="watermark">Made by Korabi X/1</div>
+    <div class="watermark">Made by Korabi XI/1</div>
   </body>
   <script>
     const link = "https://schoolbackend-production.up.railway.app/";
@@ -601,7 +601,7 @@
         return [num, pr];
       }
       let now = new Date();
-      //  now = getNextDate(2, 12, 56, 0)
+      // now = getNextDate(2, 12, 56, 0)
       const dayOfWeek = now.getDay();
       const time = now.toLocaleTimeString("en-US", {
         hour12: false,
@@ -739,7 +739,7 @@
           str =
             str + `<li>${key} | ${profname}${_toadd ? " " + _toadd : ""}<li>\n`;
         });
-        list.innerHTML = str;
+        list.innerHTML = str + `<li>[ Made by Korab Arifi XI/1 ]<li>\n`;
       }
     }, 100);
   </script>

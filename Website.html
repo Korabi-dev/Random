@@ -4,35 +4,34 @@
     <link rel="shortcut icon" type="image/x-icon" href="logo.png" />
     <title>SH.M.T Mehmet Isai</title>
     <style>
-   @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;800&display=swap');
-   @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;800&family=Varela+Round&display=swap');
-   @import url('https://fonts.googleapis.com/css2?family=Crete+Round:ital@1&display=swap');
-   @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
-   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@600&display=swap');
+      @import url("https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;800&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;800&family=Varela+Round&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Crete+Round:ital@1&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@600&display=swap");
       body {
         background-color: #020c29;
         overflow-x: hidden;
-       overflow-y: hidden;
-        margin:0;
-        padding:0;
+        overflow-y: hidden;
+        margin: 0;
+        padding: 0;
         height: 100vh;
-  background: linear-gradient(to bottom, rgb(2, 39, 82), #061020);
+        background: linear-gradient(to bottom, rgb(2, 39, 82), #061020);
       }
 
-
-     .watermark {
-     position: absolute;
-     bottom: 55px;
-     left: 9px;
-     color: white;
-     font-family: 'Crete Round', serif;
-     font-size: 12px;
-    }
+      .watermark {
+        position: absolute;
+        bottom: 55px;
+        left: 9px;
+        color: white;
+        font-family: "Crete Round", serif;
+        font-size: 12px;
+      }
 
       .navbar {
         height: 57px;
         width: 100%;
-        display:inline-flex;
+        display: inline-flex;
         align-items: center;
         justify-content: center;
         font-size: 28px;
@@ -43,7 +42,7 @@
         border-radius: 5px;
       }
       .clock {
-        font-family: 'Orbitron', sans-serif;
+        font-family: "Orbitron", sans-serif;
         color: white;
         opacity: 0.5;
         margin-top: 3%;
@@ -55,13 +54,13 @@
         height: 50px;
         padding-right: 10px;
         display: flex;
-     list-style: wrap;
-     align-items: center;
+        list-style: wrap;
+        align-items: center;
       }
       .navbar span {
-        font-family: 'M PLUS Rounded 1c', sans-serif;
-      border: 1px white;
-      padding-right: 3%;
+        font-family: "M PLUS Rounded 1c", sans-serif;
+        border: 1px white;
+        padding-right: 3%;
       }
 
       .strings {
@@ -72,7 +71,7 @@
       }
       ul {
         list-style-type: none;
-        font-family: 'Noto Sans', sans-serif;
+        font-family: "Noto Sans", sans-serif;
         opacity: 0.5;
         max-height: 700px;
       }
@@ -94,593 +93,654 @@
         display: inline-block;
         margin: auto;
         margin-top: 10px;
-        font-family: 'Varela Round', sans-serif;
+        font-family: "Varela Round", sans-serif;
       }
     </style>
   </head>
   <body>
     <div class="navbar">
-      <img src="logo.png" alt="logo">
+      <img src="logo.png" alt="logo" />
       <span>Mehmet Isai</span>
     </div>
-    <div class="clock" id="cl">
-      1:28 PM | Ora 1,  Ndrrimi 2
-    </div>
+    <div class="clock" id="cl">1:28 PM | Ora 1, Ndrrimi 2</div>
     <div class="strings">
-    <ul id="list">
-    </ul>
-  </div>
+      <ul id="list"></ul>
+    </div>
     <div class="announcement">
       <marquee id="marquee">Welcome To Mehmet Isai!</marquee>
     </div>
     <div class="watermark">Made by Korabi X/1</div>
   </body>
   <script>
-  const link = "https://schoolbackend-production.up.railway.app/"
-  function updateAnnouncement(n){
-    fetch(link + "get").then(async r => {
-      let txt = await r.text()
-      if(!txt.includes("false")){
-      return;
-      }
-      txt = JSON.parse(txt).content
-      if(document.getElementById("marquee").innerHTML != txt) {
-      document.getElementById("marquee").innerHTML = txt
-      if(!n) {
-        location.reload()
-      }
+    const link = "https://schoolbackend-production.up.railway.app/";
+    function updateAnnouncement(n) {
+      fetch(link + "get")
+        .then(async (r) => {
+          let txt = await r.text();
+          if (!txt.includes("false")) {
+            return;
+          }
+          txt = JSON.parse(txt).content;
+          if (document.getElementById("marquee").innerHTML != txt) {
+            document.getElementById("marquee").innerHTML = txt;
+            if (!n) {
+              location.reload();
+            }
+          }
+          return txt;
+        })
+        .catch((e) => {
+          return null;
+        });
     }
-      return txt;
-    }).catch(e => {
-      return null;
-    })
-  }
-  updateAnnouncement(1)
-  setInterval(updateAnnouncement, 10000);
+    updateAnnouncement(1);
+    setInterval(updateAnnouncement, 10000);
   </script>
   <script>
-    document.getElementById("marquee").innerHTML = document.getElementById("marquee").innerHTML.replace(/\n/g, "").replace("<br>", "").replace("</br>", "").replace("<br/>")
+    document.getElementById("marquee").innerHTML = document
+      .getElementById("marquee")
+      .innerHTML.replace(/\n/g, "")
+      .replace("<br>", "")
+      .replace("</br>", "")
+      .replace("<br/>");
     setInterval(() => {
-      const ul = document.querySelector('ul');
-const maxHeight = parseInt(window.getComputedStyle(ul).getPropertyValue('max-height'));
-if (ul.scrollHeight > maxHeight) {
-  const fontSize = parseInt(window.getComputedStyle(ul).getPropertyValue('font-size'));
-  ul.style.fontSize = fontSize - 0.5 + 'px';
-}
+      const ul = document.querySelector("ul");
+      const maxHeight = parseInt(
+        window.getComputedStyle(ul).getPropertyValue("max-height")
+      );
+      if (ul.scrollHeight > maxHeight) {
+        const fontSize = parseInt(
+          window.getComputedStyle(ul).getPropertyValue("font-size")
+        );
+        ul.style.fontSize = fontSize - 0.5 + "px";
+      }
     }, 0.01);
     const profs = {
-1: "Afrim Rexhepi",
-2: "Agim Tahiri",
-3: "Agron Bislimi",
-4: "Ahmet Bilalli",
-5: "Anila Bajrami",
-6: "Arben Ramadani",
-7: "Arbër Shabani",
-8: "Arsim Duraku",
-9: "Artan Bajrami",
-10: "Astrit Korqa",
-11: "Bekim Beqiri",
-12: "Bekim Isufi",
-13: "Blerta Hoxha",
-14: "Bujar Kurteshi",
-15: "Burim Dërmaku",
-16: "Edona Selimi",
-17: "Eglantina Bilalli",
-18: "Fahrije Srmaxhaj",
-19: "Fazli Srmaxhaj",
-20: "Feriz Trstena",
-21: "Flora Maliqi",
-22: "Florida Dërmaku",
-23: "Florim Bajrami",
-24: "Gani Krasniqi",
-25: "Gojarta Neziri",
-26: "Hamide Ejupi",
-27: "Hata Shkodra",
-28: "Ibrahim Isufi",
-29: "Ilir Elezi",
-30: "Ismail Shkodra",
-31: "Kaltrina Shala",
-32: "Labinota Shabiu",
-33: "Luljeta Latifi",
-34: "Luljeta Shkodra",
-35: "Lulzim Bajrami",
-37: "Magribe Neziri",
-38: "Mehmet Rapuca",
-39: "Mehmet Shaqiri",
-40: "Mexhid Cani",
-41: "Minavere Berisha",
-42: "Muhamet Sadriu",
-43: "Mustafë Hoxha",
-44: "Nagip Krasniqi",
-45: "Naser Morina",
-46: "Nevzad Isufi",
-47: "Nexhmije Hajrullahu",
-48: "Rabije Demolli",
-49: "Sabedin Veseli",
-50: "Sadushe Agaj",
-51: "Sali Halili",
-52: "Sefer Kastrati",
-53: "Shqipe Aliu",
-54: "Shqipe Nuhiu",
-55: "Vedat Kastrati",
-56: "Xhabir Ymeri",
-57: "Xhafer Xhelili",
-58: "Xhevahire Bislimi",
-59: "Xhevde Agaj",
-60: "Xhylferije Veliu",
-61: "Yllka Qerimi",
-62: "Emin Lutfiu",
-63: "Arton Memeti",
-64: "Faid Hoxha",
-65: "Naser Behluli"
-}
+      1: "Afrim Rexhepi",
+      2: "Agim Tahiri",
+      3: "Agron Bislimi",
+      4: "Ahmet Bilalli",
+      5: "Anila Bajrami",
+      6: "Arben Ramadani",
+      7: "Arbër Shabani",
+      8: "Arsim Duraku",
+      9: "Artan Bajrami",
+      10: "Astrit Korqa",
+      11: "Bekim Beqiri",
+      12: "Bekim Isufi",
+      13: "Blerta Hoxha",
+      14: "Bujar Kurteshi",
+      15: "Burim Dërmaku",
+      16: "Edona Selimi",
+      17: "Eglantina Bilalli",
+      18: "Fahrije Srmaxhaj",
+      19: "Fazli Srmaxhaj",
+      20: "Feriz Trstena",
+      21: "Flora Maliqi",
+      22: "Florida Dërmaku",
+      23: "Florim Bajrami",
+      24: "Gani Krasniqi",
+      25: "Gojarta Neziri",
+      26: "Hamide Ejupi",
+      27: "Hata Shkodra",
+      28: "Ibrahim Isufi",
+      29: "Ilir Elezi",
+      30: "Ismail Shkodra",
+      31: "Kaltrina Shala",
+      32: "Labinota Shabiu",
+      33: "Luljeta Latifi",
+      34: "Luljeta Shkodra",
+      35: "Lulzim Bajrami",
+      37: "Magribe Neziri",
+      38: "Mehmet Rapuca",
+      39: "Mehmet Shaqiri",
+      40: "Mexhid Cani",
+      41: "Minavere Berisha",
+      42: "Muhamet Sadriu",
+      43: "Mustafë Hoxha",
+      44: "Nagip Krasniqi",
+      45: "Naser Morina",
+      46: "Nevzad Isufi",
+      47: "Nexhmije Hajrullahu",
+      48: "Rabije Demolli",
+      49: "Sabedin Veseli",
+      50: "Sadushe Agaj",
+      51: "Sali Halili",
+      52: "Sefer Kastrati",
+      53: "Shqipe Aliu",
+      54: "Shqipe Nuhiu",
+      55: "Vedat Kastrati",
+      56: "Xhabir Ymeri",
+      57: "Xhafer Xhelili",
+      58: "Xhevahire Bislimi",
+      59: "Xhevde Agaj",
+      60: "Xhylferije Veliu",
+      61: "Yllka Qerimi",
+      62: "Emin Lutfiu",
+      63: "Arton Memeti",
+      64: "Faid Hoxha",
+      65: "Naser Behluli",
+    };
 
-
- let data = {}
-const list = document.getElementById("list")
-const shifts = [{
-        name: 'Ndërrimi 1',
+    let data = {};
+    const list = document.getElementById("list");
+    const shifts = [
+      {
+        name: "Ndërrimi 1",
         classes: [
           {
-                startTime: '07:15',
-                endTime: '07:45'
-            },
-            {
-                startTime: '07:45',
-                endTime: '8:15'
-            },
-            {
-                startTime: '8:15',
-                endTime: '8:45'
-            },
-            {
-                startTime: '9:00',
-                endTime: '9:30'
-            },
-            {
-                startTime: '9:30',
-                endTime: '10:00'
-            },
-            {
-                startTime: '10:00',
-                endTime: '10:30'
-            },
-            {
-                startTime: '10:30',
-                endTime: '11:00'
-            }
+            startTime: "07:15",
+            endTime: "07:45",
+          },
+          {
+            startTime: "07:45",
+            endTime: "8:15",
+          },
+          {
+            startTime: "8:15",
+            endTime: "8:45",
+          },
+          {
+            startTime: "9:00",
+            endTime: "9:30",
+          },
+          {
+            startTime: "9:30",
+            endTime: "10:00",
+          },
+          {
+            startTime: "10:00",
+            endTime: "10:30",
+          },
+          {
+            startTime: "10:30",
+            endTime: "11:00",
+          },
         ],
-        startTime: '07:15',
-        endTime: '11:00'
-    },
-    {
-        name: 'Ndërrimi 2',
-        classes: [{
-                startTime: '11:10',
-                endTime: '11:40'
-            },
-            {
-                startTime: '11:40',
-                endTime: '12:10'
-            },
-            {
-                startTime: '12:10',
-                endTime: '12:40'
-            },
-            {
-                startTime: '12:55',
-                endTime: '13:25'
-            },
-            {
-                startTime: '13:25',
-                endTime: '13:55'
-            },
-            {
-                startTime: '13:55',
-                endTime: '14:25'
-            },
-            {
-                startTime: '14:25',
-                endTime: '14:55'
-            }
+        startTime: "07:15",
+        endTime: "11:00",
+      },
+      {
+        name: "Ndërrimi 2",
+        classes: [
+          {
+            startTime: "11:10",
+            endTime: "11:40",
+          },
+          {
+            startTime: "11:40",
+            endTime: "12:10",
+          },
+          {
+            startTime: "12:10",
+            endTime: "12:40",
+          },
+          {
+            startTime: "12:55",
+            endTime: "13:25",
+          },
+          {
+            startTime: "13:25",
+            endTime: "13:55",
+          },
+          {
+            startTime: "13:55",
+            endTime: "14:25",
+          },
+          {
+            startTime: "14:25",
+            endTime: "14:55",
+          },
         ],
-        startTime: '11:10',
-        endTime: '14:55'
-    }
-];
+        startTime: "11:10",
+        endTime: "14:55",
+      },
+    ];
     data.one = {
-  "XII/1": {
-1: [49, 8, 8, 8, 8, 16, 41],
-2: [0, 53, 5, 5, 33, 41, 41],
-3: [10, 10, 49, 62, 62, 53, 53],
-4: [23, 23, 23, 23, 23, 23, 0],
-5: [23, 23, 23, 23, 23, 23, 0],
-nd1: true
-  },
-  "XII/2": {
-1: [7, 7, 7, 7, 59, 53, 53],
-2: [59, 59, 53, 10, 10, 49, 33],
-3: [0, 43, 43, 43, 43, 43, 43],
-4: [0, 43, 43, 43, 43, 43, 43],
-5: [39, 39, 39, 12, 26, 25, 0],
-nd1: true
-  },
-  "XII/3": {
-1: [33, 53, 26, 26, 49, 59, 16],
-2: [62, 62, 62, 62, 49, 10, 10],
-3: [0, 35, 35, 35, 35, 35, 35],
-4: [0, 59, 59, 8, 8, 53, 53],
-5: [0, 35, 35, 35, 35, 35, 35],
-nd1: true
-  },
-  "XII/4": {
-1: [51, 51, 49, 53, 33, 7, 7],
-2: [11, 11, 11, 11, 11, 11, 11],
-3: [11, 11, 11, 11, 11, 11, 11],
-4: [39, 39, 39, 53, 53, 48, 0],
-5: [0, 0, 26, 26, 48, 48, 51],
-nd1: true
-  },
-  "XII/5": {
-1: [26, 26, 45, 45, 41, 45, 45],
-2: [0, 0, 39, 53, 53, 51, 51],
-3: [57, 57, 57, 57, 57, 57, 49],
-4: [10, 10, 53, 33, 25, 41, 41],
-5: [57, 57, 57, 57, 57, 57, 0],
-nd1: true
-  },
-  "XII/6": {
-1: [0, 49, 53, 59, 45, 10, 33],
-2: [15, 15, 15, 15, 15, 15, 0],
-3: [15, 15, 15, 15, 15, 15, 15],
-4: [53, 53, 10, 59, 59, 39, 9],
-5: [0, 5, 5, 54, 54, 54, 54],
-nd1: true
-  },
-  "XII/7": {
-1: [59, 59, 37, 49, 10, 5, 5],
-2: [14, 14, 14, 14, 14, 14, 14],
-3: [0, 14, 14, 14, 14, 14, 14],
-4: [59, 14, 14, 14, 10, 25, 33],
-5: [14, 14, 37, 37, 39, 0, 0],
-nd1: true
-  },
-  "XII/8": {
-1: [39, 39, 39, 39, 2, 2, 2],
-2: [39, 39, 59, 59, 59, 5, 5],
-3: [0, 34, 34, 37, 37, 37, 0],
-4: [0, 8, 8, 39, 39, 10, 10],
-5: [40, 40, "19/64", "19/64", 40, 39, 39],
-nd1: true
-  },
-  "XII/9": {
-1: [37, 16, 41, 5, 5, 37, 37],
-2: [0, 10, 10, 41, 41, 33, 49],
-3: [19, 19, 19, 19, 34, 34, 24],
-4: [0, 56, 56, 56, 56, 56, 56],
-5: [0, 56, 56, 56, 56, 56, 56],
-nd1: true
-  },
-  "XII/10": {
-1: [2, 2, 59, 37, 37, 49, 25],
-2: [24, 24, 24, 24, 24, 24, 24],
-3: [0, 0, 10, 10, 24, 24, 37],
-4: [24, 24, 24, 24, 24, 24, 24],
-5: [16, 16, 59, 59, 5, 5, 0],
-nd1: true
-  },
-  "XII/11": {
-1: [0, 37, 29, 29, 16, 41, 52],
-2: [2, 2, 2, 2, 2, 2, 0],
-3: [49, 37, 37, 5, 5, 41, 41],
-4: [55, 55, 55, 55, 33, 52, 52],
-5: [2, 2, 2, 2, 2, 2, 0],
-nd1: true
-  },
-  "XII/12": {
-1: [0, 33, 16, 48, 29, 29, 27],
-2: [27, 27, 27, 27, 27, 27, 0],
-3: [37, 49, 5, 48, 30, 30, 30],
-4: [27, 27, 27, 27, 27, 27, 0],
-5: [37, 37, 38, 38, 38, 38, 5],
-nd1: true
-  },
-  "XI/1": {
-1: [32, 32, 32, 32, 32, 32, 32],
-2: [32, 32, 18, 18, 6, 6, 23],
-3: [46, 62, 62, 49, 48, 62, 62],
-4: [0, 33, 60, 46, 46, 32, 32],
-5: [0, 0, 18, 21, 21, 22, 22],
-nd1: true
-  },
-  "XI/3": {
-1: [58, 58, 58, 43, 43, 43, 43],
-2: [0, 35, 35, 46, 46, 44, 44],
-3: [58, 58, 58, 58, 58, 58, 0],
-4: [12, 60, 46, 12, 12, 33, 18],
-5: [21, 21, 16, 16, 18, 18, 25],
-nd1: true
-  },
-  "XI/5": {
-1: [45, 45, 51, 21, 21, 20, 20],
-2: [18, 18, 32, 51, 51, 46, 46],
-3: [0, 51, 51, 51, 51, 51, 51],
-4: [60, 46, 33, 54, 54, 12, 12],
-5: [0, 0, 51, 51, 51, 25, 18],
-nd1: true
-  },
-  "XI/7": {
-1: [28, 28, 28, 13, 13, 33, 56],
-2: [28, 28, 28, 28, 28, 28, 0],
-3: [34, 46, 46, 34, 48, 48, 48],
-4: [0, 12, 12, 52, 2, 46, 48],
-5: [0, 40, 40, 40, 16, 21, 21],
-nd1: true
-  },
-  "XI/9": {
-1: [13, 13, 33, 2, 48, 21, 21],
-2: [13, 13, 13, 13, 52, 52, 52],
-3: [52, 52, 52, 52, 52, 52, 0],
-4: [37, 37, 37, 13, 13, 13, 13],
-5: [0, 48, 48, 48, 12, 12, 16],
-nd1: true
-  },
-  "X/1": {
-1: [4, 4, 35, 35, 50, 61, 61],
-2: [23, 23, 60, 60, 4, 31, 0],
-3: [0, 8, 8, 8, 8, 8, 8],
-4: [32, 32, 29, 29, 6, 6, 0],
-5: [50, 50, 62, 62, 1, 1, 1]
-  },
-  "X/2": {
-1: [50, 50, 1, 23, 23, 35, 35],
-2: [0, 8, 8, 8, 8, 8, 8],
-3: [29, 29, 31, 60, 60, 61, 61],
-4: [6, 6, 4, 4, 50, 0, 0],
-5: [32, 32, 1, 1, 62, 62, 4]
-  },
-  "X/3": {
-1: [35, 35, 4, 50, 1, 23, 23],
-2: [7, 7, 7, 7, 7, 7, 0],
-3: [0, 31, 29, 29, 1, 1, 60],
-4: [50, 50, 6, 6, 4, 4, 0],
-5: [62, 62, 61, 61, 60, 32, 32]
-  },
-  "X/4": {
-1: [41, 25, 61, 61, 20, 20, 0],
-2: [44, 44, 29, 29, 60, 60, 0],
-3: [44, 44, 44, 44, 44, 44, 0],
-4: [4, 4, 41, 41, 44, 44, 31],
-5: [44, 44, 4, 58, 58, 58, 58]
-  },
-  "X/5": {
-1: [3, 3, 3, 3, 3, 3, 0],
-2: [20, 20, 58, 50, 50, 4, 4],
-3: [60, 60, 61, 31, 61, 0, 0],
-4: [29, 29, 44, 44, 11, 11, 11],
-5: [25, 4, 50, 44, 44, 44, 44]
-  },
-  "X/6": {
-1: [29, 29, 56, 56, 56, 40, 40],
-2: [49, 49, 56, 56, 34, 34, 58],
-3: ["55/28", "55/28", "55/28", "55/28", "55/28", "55/28", "55/28"],
-4: [0, 0, 48, 0, 61, 0, 4],
-5: [0, 60, 58, 4, 4, 28, 0]
-  },
-  "X/7": {
-1: [56, 56, 29, 29, 40, 24, 24],
-2: [41, 41, 47, 47, 58, 58, 31],
-3: ["40/64", "40/64", "40/64", "40/64", "40/64", "40/64", "40/64"],
-4: [41, 48, 47, 61, "40/64", "40/64", "40/64"],
-5: [0, 40, 28, 28, 61, 0, 0]
-  },
-  "X/8": {
-1: ["55/52", "55/52", "55/52", "55/52", "55/52", "55/52", 0],
-2: [29, 29, 34, 34, 55, 55, 55],
-3: [0, 41, 41, 47, 31, 60, 0],
-4: [13, 41, 61, 30, 47, 47, 61],
-5: [13, 58, 13, 13, 13, 13, 13]
-  },
-  "X/9": {
-1: [25, 54, 20, 30, 61, 47, 47],
-2: [0, 0, 50, 45, 45, 47, 60],
-3: [31, 22, 22, 20, 20, 20, 20],
-4: [20, 20, 20, 20, 20, 20, 20],
-5: [58, 54, 54, 50, 50, 61, 0]
-  },
-  "X/10": {
-1: [20, 20, 50, 15, 15, 54, 54],
-2: [54, 54, 54, 54, 54, 54, 0],
-3: [0, 0, 60, 61, 47, 47, 31],
-4: [16, 9, 9, 15, 15, 50, 47],
-5: [51, 51, 25, 22, 22, 50, 61]
-  },
-  "X/11": {
-1: [27, 27, 27, 47, 47, 30, 30],
-2: [30, 30, 30, 30, 30, 30, 30],
-3: [17, 17, 33, 12, 12, 31, 47],
-4: [30, 16, 50, 50, 30, 30, 30],
-5: [38, 38, 60, 25, 0, 0, 0]
-  },
-  "XI/2": {
-1: [5, 5, 23, 62, 62, 62, 62],
-2: [6, 6, 46, 46, 16, 16, 0],
-3: [1, 1, 1, 18, 18, 33, 0],
-4: [1, 1, 1, 1, 1, 1, 0],
-5: [18, 22, 22, 32, 32, 60, 46]
-  },
-  "XI/4": {
-1: [43, 11, 11, 11, 12, 12, 3],
-2: [46, 3, 3, 3, 43, 43, 43],
-3: [7, 7, 7, 7, 7, 7, 0],
-4: [33, 18, 18, 11, 7, 7, 0],
-5: [5, 5, 18, 60, 46, 46, 0]
-  },
-  "XI/6": {
-1: [45, 16, 54, 54, 54, 15, 17],
-2: [42, 42, 42, 42, 42, 42, 42],
-3: [51, 18, 18, 33, 22, 22, 17],
-4: [46, 15, 15, 9, 9, 42, 42],
-5: [54, 18, 46, 46, 12, 0, 0]
-  },
-  "XI/8": {
-1: [19, 19, 19, 19, 19, 19, 19],
-2: ["19/64", "19/64", "19/64", "19/64", "19/64", "19/64", "19/64"],
-3: [24, 48, 47, "1/64", 17, 17, "1/64"],
-4: [47, 47, 16, 16, 48, 2, 2],
-5: [48, 13, 12, 12, 0, 0, 0]
-  },
-  "XI/10": {
-1: [16, 38, 38, 38, 38, 38, 0],
-2: [38, 38, 38, 38, 38, 38, 0],
-3: [47, 47, 17, 17, 33, 18, 18],
-4: [48, 30, 30, 47, 38, 38, 0],
-5: [12, 12, 38, 27, 27, 27, 27]
-  }
-}
+      "XII/1": {
+        1: [49, 8, 8, 8, 8, 16, 41],
+        2: [0, 53, 5, 5, 33, 41, 41],
+        3: [10, 10, 49, 62, 62, 53, 53],
+        4: [23, 23, 23, 23, 23, 23, 0],
+        5: [23, 23, 23, 23, 23, 23, 0],
+        nd1: true,
+      },
+      "XII/2": {
+        1: [7, 7, 7, 7, 59, 53, 53],
+        2: [59, 59, 53, 10, 10, 49, 33],
+        3: [0, 43, 43, 43, 43, 43, 43],
+        4: [0, 43, 43, 43, 43, 43, 43],
+        5: [39, 39, 39, 12, 26, 25, 0],
+        nd1: true,
+      },
+      "XII/3": {
+        1: [33, 53, 26, 26, 49, 59, 16],
+        2: [62, 62, 62, 62, 49, 10, 10],
+        3: [0, 35, 35, 35, 35, 35, 35],
+        4: [0, 59, 59, 8, 8, 53, 53],
+        5: [0, 35, 35, 35, 35, 35, 35],
+        nd1: true,
+      },
+      "XII/4": {
+        1: [51, 51, 49, 53, 33, 7, 7],
+        2: [11, 11, 11, 11, 11, 11, 11],
+        3: [11, 11, 11, 11, 11, 11, 11],
+        4: [39, 39, 39, 53, 53, 48, 0],
+        5: [0, 0, 26, 26, 48, 48, 51],
+        nd1: true,
+      },
+      "XII/5": {
+        1: [26, 26, 45, 45, 41, 45, 45],
+        2: [0, 0, 39, 53, 53, 51, 51],
+        3: [57, 57, 57, 57, 57, 57, 49],
+        4: [10, 10, 53, 33, 25, 41, 41],
+        5: [57, 57, 57, 57, 57, 57, 0],
+        nd1: true,
+      },
+      "XII/6": {
+        1: [0, 49, 53, 59, 45, 10, 33],
+        2: [15, 15, 15, 15, 15, 15, 0],
+        3: [15, 15, 15, 15, 15, 15, 15],
+        4: [53, 53, 10, 59, 59, 39, 9],
+        5: [0, 5, 5, 54, 54, 54, 54],
+        nd1: true,
+      },
+      "XII/7": {
+        1: [59, 59, 37, 49, 10, 5, 5],
+        2: [14, 14, 14, 14, 14, 14, 14],
+        3: [0, 14, 14, 14, 14, 14, 14],
+        4: [59, 14, 14, 14, 10, 25, 33],
+        5: [14, 14, 37, 37, 39, 0, 0],
+        nd1: true,
+      },
+      "XII/8": {
+        1: [39, 39, 39, 39, 2, 2, 2],
+        2: [39, 39, 59, 59, 59, 5, 5],
+        3: [0, 34, 34, 37, 37, 37, 0],
+        4: [0, 8, 8, 39, 39, 10, 10],
+        5: [40, 40, "19/64", "19/64", 40, 39, 39],
+        nd1: true,
+      },
+      "XII/9": {
+        1: [37, 16, 41, 5, 5, 37, 37],
+        2: [0, 10, 10, 41, 41, 33, 49],
+        3: [19, 19, 19, 19, 34, 34, 24],
+        4: [0, 56, 56, 56, 56, 56, 56],
+        5: [0, 56, 56, 56, 56, 56, 56],
+        nd1: true,
+      },
+      "XII/10": {
+        1: [2, 2, 59, 37, 37, 49, 25],
+        2: [24, 24, 24, 24, 24, 24, 24],
+        3: [0, 0, 10, 10, 24, 24, 37],
+        4: [24, 24, 24, 24, 24, 24, 24],
+        5: [16, 16, 59, 59, 5, 5, 0],
+        nd1: true,
+      },
+      "XII/11": {
+        1: [0, 37, 29, 29, 16, 41, 52],
+        2: [2, 2, 2, 2, 2, 2, 0],
+        3: [49, 37, 37, 5, 5, 41, 41],
+        4: [55, 55, 55, 55, 33, 52, 52],
+        5: [2, 2, 2, 2, 2, 2, 0],
+        nd1: true,
+      },
+      "XII/12": {
+        1: [0, 33, 16, 48, 29, 29, 27],
+        2: [27, 27, 27, 27, 27, 27, 0],
+        3: [37, 49, 5, 48, 30, 30, 30],
+        4: [27, 27, 27, 27, 27, 27, 0],
+        5: [37, 37, 38, 38, 38, 38, 5],
+        nd1: true,
+      },
+      "XI/1": {
+        1: [32, 32, 32, 32, 32, 32, 32],
+        2: [32, 32, 18, 18, 6, 6, 23],
+        3: [46, 62, 62, 49, 48, 62, 62],
+        4: [0, 33, 60, 46, 46, 32, 32],
+        5: [0, 0, 18, 21, 21, 22, 22],
+        nd1: true,
+      },
+      "XI/3": {
+        1: [58, 58, 58, 43, 43, 43, 43],
+        2: [0, 35, 35, 46, 46, 44, 44],
+        3: [58, 58, 58, 58, 58, 58, 0],
+        4: [12, 60, 46, 12, 12, 33, 18],
+        5: [21, 21, 16, 16, 18, 18, 25],
+        nd1: true,
+      },
+      "XI/5": {
+        1: [45, 45, 51, 21, 21, 20, 20],
+        2: [18, 18, 32, 51, 51, 46, 46],
+        3: [0, 51, 51, 51, 51, 51, 51],
+        4: [60, 46, 33, 54, 54, 12, 12],
+        5: [0, 0, 51, 51, 51, 25, 18],
+        nd1: true,
+      },
+      "XI/7": {
+        1: [28, 28, 28, 13, 13, 33, 56],
+        2: [28, 28, 28, 28, 28, 28, 0],
+        3: [34, 46, 46, 34, 48, 48, 48],
+        4: [0, 12, 12, 52, 2, 46, 48],
+        5: [0, 40, 40, 40, 16, 21, 21],
+        nd1: true,
+      },
+      "XI/9": {
+        1: [13, 13, 33, 2, 48, 21, 21],
+        2: [13, 13, 13, 13, 52, 52, 52],
+        3: [52, 52, 52, 52, 52, 52, 0],
+        4: [37, 37, 37, 13, 13, 13, 13],
+        5: [0, 48, 48, 48, 12, 12, 16],
+        nd1: true,
+      },
+      "X/1": {
+        1: [4, 4, 35, 35, 50, 61, 61],
+        2: [23, 23, 60, 60, 4, 31, 0],
+        3: [0, 8, 8, 8, 8, 8, 8],
+        4: [32, 32, 29, 29, 6, 6, 0],
+        5: [50, 50, 62, 62, 1, 1, 1],
+      },
+      "X/2": {
+        1: [50, 50, 1, 23, 23, 35, 35],
+        2: [0, 8, 8, 8, 8, 8, 8],
+        3: [29, 29, 31, 60, 60, 61, 61],
+        4: [6, 6, 4, 4, 50, 0, 0],
+        5: [32, 32, 1, 1, 62, 62, 4],
+      },
+      "X/3": {
+        1: [35, 35, 4, 50, 1, 23, 23],
+        2: [7, 7, 7, 7, 7, 7, 0],
+        3: [0, 31, 29, 29, 1, 1, 60],
+        4: [50, 50, 6, 6, 4, 4, 0],
+        5: [62, 62, 61, 61, 60, 32, 32],
+      },
+      "X/4": {
+        1: [41, 25, 61, 61, 20, 20, 0],
+        2: [44, 44, 29, 29, 60, 60, 0],
+        3: [44, 44, 44, 44, 44, 44, 0],
+        4: [4, 4, 41, 41, 44, 44, 31],
+        5: [44, 44, 4, 58, 58, 58, 58],
+      },
+      "X/5": {
+        1: [3, 3, 3, 3, 3, 3, 0],
+        2: [20, 20, 58, 50, 50, 4, 4],
+        3: [60, 60, 61, 31, 61, 0, 0],
+        4: [29, 29, 44, 44, 11, 11, 11],
+        5: [25, 4, 50, 44, 44, 44, 44],
+      },
+      "X/6": {
+        1: [29, 29, 56, 56, 56, 40, 40],
+        2: [49, 49, 56, 56, 34, 34, 58],
+        3: ["55/28", "55/28", "55/28", "55/28", "55/28", "55/28", "55/28"],
+        4: [0, 0, 48, 0, 61, 0, 4],
+        5: [0, 60, 58, 4, 4, 28, 0],
+      },
+      "X/7": {
+        1: [56, 56, 29, 29, 40, 24, 24],
+        2: [41, 41, 47, 47, 58, 58, 31],
+        3: ["40/64", "40/64", "40/64", "40/64", "40/64", "40/64", "40/64"],
+        4: [41, 48, 47, 61, "40/64", "40/64", "40/64"],
+        5: [0, 40, 28, 28, 61, 0, 0],
+      },
+      "X/8": {
+        1: ["55/52", "55/52", "55/52", "55/52", "55/52", "55/52", 0],
+        2: [29, 29, 34, 34, 55, 55, 55],
+        3: [0, 41, 41, 47, 31, 60, 0],
+        4: [13, 41, 61, 30, 47, 47, 61],
+        5: [13, 58, 13, 13, 13, 13, 13],
+      },
+      "X/9": {
+        1: [25, 54, 20, 30, 61, 47, 47],
+        2: [0, 0, 50, 45, 45, 47, 60],
+        3: [31, 22, 22, 20, 20, 20, 20],
+        4: [20, 20, 20, 20, 20, 20, 20],
+        5: [58, 54, 54, 50, 50, 61, 0],
+      },
+      "X/10": {
+        1: [20, 20, 50, 15, 15, 54, 54],
+        2: [54, 54, 54, 54, 54, 54, 0],
+        3: [0, 0, 60, 61, 47, 47, 31],
+        4: [16, 9, 9, 15, 15, 50, 47],
+        5: [51, 51, 25, 22, 22, 50, 61],
+      },
+      "X/11": {
+        1: [27, 27, 27, 47, 47, 30, 30],
+        2: [30, 30, 30, 30, 30, 30, 30],
+        3: [17, 17, 33, 12, 12, 31, 47],
+        4: [30, 16, 50, 50, 30, 30, 30],
+        5: [38, 38, 60, 25, 0, 0, 0],
+      },
+      "XI/2": {
+        1: [5, 5, 23, 62, 62, 62, 62],
+        2: [6, 6, 46, 46, 16, 16, 0],
+        3: [1, 1, 1, 18, 18, 33, 0],
+        4: [1, 1, 1, 1, 1, 1, 0],
+        5: [18, 22, 22, 32, 32, 60, 46],
+      },
+      "XI/4": {
+        1: [43, 11, 11, 11, 12, 12, 3],
+        2: [46, 3, 3, 3, 43, 43, 43],
+        3: [7, 7, 7, 7, 7, 7, 0],
+        4: [33, 18, 18, 11, 7, 7, 0],
+        5: [5, 5, 18, 60, 46, 46, 0],
+      },
+      "XI/6": {
+        1: [45, 16, 54, 54, 54, 15, 17],
+        2: [42, 42, 42, 42, 42, 42, 42],
+        3: [51, 18, 18, 33, 22, 22, 17],
+        4: [46, 15, 15, 9, 9, 42, 42],
+        5: [54, 18, 46, 46, 12, 0, 0],
+      },
+      "XI/8": {
+        1: [19, 19, 19, 19, 19, 19, 19],
+        2: ["19/64", "19/64", "19/64", "19/64", "19/64", "19/64", "19/64"],
+        3: [24, 48, 47, "1/64", 17, 17, "1/64"],
+        4: [47, 47, 16, 16, 48, 2, 2],
+        5: [48, 13, 12, 12, 0, 0, 0],
+      },
+      "XI/10": {
+        1: [16, 38, 38, 38, 38, 38, 0],
+        2: [38, 38, 38, 38, 38, 38, 0],
+        3: [47, 47, 17, 17, 33, 18, 18],
+        4: [48, 30, 30, 47, 38, 38, 0],
+        5: [12, 12, 38, 27, 27, 27, 27],
+      },
+    };
 
     let _k = {
-        "Ndërrimi 1":{
-            1: "Hamide Ejupi",
-            2: "Yllka Qerimi",
-            3: "Ilir Elezi",
-            4: "Rabije Demolli",
-            5: "Xhabir Ymeri"
-        },
-        "Ndërrimi 2":{
-            1: "Mustafa Hoxha",
-            2: "Fahrije Sermaxhaj",
-            3: "Magribe Neziri",
-            4: "Sabedi Veseli",
-            5: "Luljeta Shkodra"
-        }
-    }
-//h
+      "Ndërrimi 1": {
+        1: "Hamide Ejupi",
+        2: "Yllka Qerimi",
+        3: "Ilir Elezi",
+        4: "Rabije Demolli",
+        5: "Xhabir Ymeri",
+      },
+      "Ndërrimi 2": {
+        1: "Mustafa Hoxha",
+        2: "Fahrije Sermaxhaj",
+        3: "Magribe Neziri",
+        4: "Sabedi Veseli",
+        5: "Luljeta Shkodra",
+      },
+    };
+    //h
     setInterval(() => {
-        function getk(day, nd) {
-          return ", Kujdestari Jo i regjistruar";
-            let kuj = _k[nd][day]
-            if(!kuj) return 
-            let nam = kuj.split(" ")[0].toLowerCase()
-            let pr = "Kujdestar:"
-            if(nam.endsWith("e") || nam.endsWith("a")) pr = "Kujdestare:"
-            return `, ${pr} ${kuj}`
-        }
-        function getNextDate(dayOfWeek, hour, minute, second = 0) {
-            const now = new Date();
-            let date = new Date(now);
-            date.setDate(now.getDate() + (dayOfWeek + 7 - now.getDay()) % 7);
-            date.setHours(hour, minute, second, 0);
-            return date;
-        }
+      function getk(day, nd) {
+        return ", Kujdestari Jo i regjistruar";
+        let kuj = _k[nd][day];
+        if (!kuj) return;
+        let nam = kuj.split(" ")[0].toLowerCase();
+        let pr = "Kujdestar:";
+        if (nam.endsWith("e") || nam.endsWith("a")) pr = "Kujdestare:";
+        return `, ${pr} ${kuj}`;
+      }
+      function getNextDate(dayOfWeek, hour, minute, second = 0) {
+        const now = new Date();
+        let date = new Date(now);
+        date.setDate(now.getDate() + ((dayOfWeek + 7 - now.getDay()) % 7));
+        date.setHours(hour, minute, second, 0);
+        return date;
+      }
 
-        function getprof(day, hour, _class, sn) {
-          let has = data.one[_class].nd1
-          if(sn == "Ndërrimi 1" && !has) return [null,null];
-          if(sn == "Ndërrimi 2" && has) return [null,null];
-           let num = data.one[_class][day][hour - 1]
-            if(typeof(num) == "string") {
-              let hrs = num.split("/")
-              let p1 = []
-              hrs.forEach(h => {
-                h = Number(h)
-                p1.push(profs[h])
-              })
-              return [hrs, p1.join("/")]
-            }
-            if(!num) return [null,null]
-            let pr = profs[num]
-            return [num, pr]
+      function getprof(day, hour, _class, sn) {
+        let has = data.one[_class].nd1;
+        if (sn == "Ndërrimi 1" && !has) return [null, null];
+        if (sn == "Ndërrimi 2" && has) return [null, null];
+        let num = data.one[_class][day][hour - 1];
+        if (typeof num == "string") {
+          let hrs = num.split("/");
+          let p1 = [];
+          hrs.forEach((h) => {
+            h = Number(h);
+            p1.push(profs[h]);
+          });
+          return [hrs, p1.join("/")];
         }
-        let now = new Date();
+        if (!num) return [null, null];
+        let pr = profs[num];
+        return [num, pr];
+      }
+      let now = new Date();
       //  now = getNextDate(2, 12, 56, 0)
-        const dayOfWeek = now.getDay();
-        const time = now.toLocaleTimeString('en-US', {
-            hour12: false
-        });
-        const currentShift = time >= shifts[0].startTime && time < shifts[1].startTime ? shifts[0] : shifts[1];
-        const currentShiftName = currentShift.name;
-        let currentClass = null;
-        for (let i = 0; i < currentShift.classes.length; i++) {
-            if (time >= currentShift.classes[i].startTime && time < currentShift.classes[i].endTime) {
-                currentClass = i + 1;
-            }
+      const dayOfWeek = now.getDay();
+      const time = now.toLocaleTimeString("en-US", {
+        hour12: false,
+      });
+      const currentShift =
+        time >= shifts[0].startTime && time < shifts[1].startTime
+          ? shifts[0]
+          : shifts[1];
+      const currentShiftName = currentShift.name;
+      let currentClass = null;
+      for (let i = 0; i < currentShift.classes.length; i++) {
+        if (
+          time >= currentShift.classes[i].startTime &&
+          time < currentShift.classes[i].endTime
+        ) {
+          currentClass = i + 1;
         }
-        function getTimeDifference(time2, time1) {
-         const [hours1, minutes1] = time1.split(':');
-            const [hours2, minutes2] = time2.split(':');
+      }
+      function getTimeDifference(time2, time1) {
+        const [hours1, minutes1] = time1.split(":");
+        const [hours2, minutes2] = time2.split(":");
 
-             const date1 = new Date();
-             date1.setHours(hours1);
-             date1.setMinutes(minutes1);
-             const date2 = new Date();
-             date2.setHours(hours2);
-             date2.setMinutes(minutes2);
-             const timeDifference = (date2.getTime() - date1.getTime()) / (1000 * 60);
-            return Math.round(timeDifference);
-            }
-        let onbreak = false;
-        const times = [
-            [[8,45], [9, 0]],
-             [[12,40], [12,55]]
-            ]
-        const startTime = new Date(now);
-        startTime.setHours(times[0][0][0], times[0][0][1]);
-        const endTime = new Date(now);
-        endTime.setHours(times[0][1][0], times[0][1][1]);
-        if (now >= startTime && now < endTime) {
-            onbreak = true
-        }
-        startTime.setHours(times[1][0][0], times[1][0][1]);
-        endTime.setHours(times[1][1][0], times[1][1][1]);
-        if (now >= startTime && now < endTime) {
-            onbreak = true
-        }
-        const cl = document.getElementById("cl")
-       // const cl2 = document.getElementById("cl2")
-        let cts = now.toLocaleTimeString([], {
-            hour: '2-digit',
-            minute: '2-digit',
-            hour12: true
-        });
-        const months = ['Janar', 'Shkurt', 'Mars', 'Prill', 'Maj', 'Qershor', 'Korrik', 'Gusht', 'Shtator', 'Tetor', 'Nëntor', 'Dhjetor'];
-        const monthName = months[now.getMonth()]
-        let _toa = ""; 
-        if(!onbreak && currentClass) {
-            _toa = _toa + ` | Ora ${currentClass} mbaron në ${getTimeDifference(currentShift.classes[currentClass - 1].endTime, time)}min`
-        }
-        let cl2 = `${now.getDate()} ${monthName} ${now.getFullYear()}${_toa ? _toa : ""}`
-        const _kn = getk(now.getDay(), currentShiftName)
-        if (now.getDay() != 0 && now.getDay() != 6) {
-            if (onbreak) {
-                cl.innerHTML = `${cts} | Pushim, ${currentShiftName}${_kn ? `${_kn}` : ""}`
-            } else {
-                if (currentClass) {
-                    cl.innerHTML = `${cl2}<br>${cts} | Ora ${currentClass}, ${currentShiftName}${_kn ? `${_kn}` : ""}`
-                } else {
-                    cl.innerHTML = `${cl2}<br>${cts} | Mësimi Ka Mbaruar!`
-                }
-            }
+        const date1 = new Date();
+        date1.setHours(hours1);
+        date1.setMinutes(minutes1);
+        const date2 = new Date();
+        date2.setHours(hours2);
+        date2.setMinutes(minutes2);
+        const timeDifference =
+          (date2.getTime() - date1.getTime()) / (1000 * 60);
+        return Math.round(timeDifference);
+      }
+      let onbreak = false;
+      const times = [
+        [
+          [8, 45],
+          [9, 0],
+        ],
+        [
+          [12, 40],
+          [12, 55],
+        ],
+      ];
+      const startTime = new Date(now);
+      startTime.setHours(times[0][0][0], times[0][0][1]);
+      const endTime = new Date(now);
+      endTime.setHours(times[0][1][0], times[0][1][1]);
+      if (now >= startTime && now < endTime) {
+        onbreak = true;
+      }
+      startTime.setHours(times[1][0][0], times[1][0][1]);
+      endTime.setHours(times[1][1][0], times[1][1][1]);
+      if (now >= startTime && now < endTime) {
+        onbreak = true;
+      }
+      const cl = document.getElementById("cl");
+      // const cl2 = document.getElementById("cl2")
+      let cts = now.toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      });
+      const months = [
+        "Janar",
+        "Shkurt",
+        "Mars",
+        "Prill",
+        "Maj",
+        "Qershor",
+        "Korrik",
+        "Gusht",
+        "Shtator",
+        "Tetor",
+        "Nëntor",
+        "Dhjetor",
+      ];
+      const monthName = months[now.getMonth()];
+      let _toa = "";
+      if (!onbreak && currentClass) {
+        _toa =
+          _toa +
+          ` | Ora ${currentClass} mbaron në ${getTimeDifference(
+            currentShift.classes[currentClass - 1].endTime,
+            time
+          )}min`;
+      }
+      let cl2 = `${now.getDate()} ${monthName} ${now.getFullYear()}${
+        _toa ? _toa : ""
+      }`;
+      const _kn = getk(now.getDay(), currentShiftName);
+      if (now.getDay() != 0 && now.getDay() != 6) {
+        if (onbreak) {
+          cl.innerHTML = `${cts} | Pushim, ${currentShiftName}${
+            _kn ? `${_kn}` : ""
+          }`;
         } else {
-            cl.innerHTML = `${cts} | Sot nuk ka mësim!`
+          if (currentClass) {
+            cl.innerHTML = `${cl2}<br>${cts} | Ora ${currentClass}, ${currentShiftName}${
+              _kn ? `${_kn}` : ""
+            }`;
+          } else {
+            cl.innerHTML = `${cl2}<br>${cts} | Mësimi Ka Mbaruar!`;
+          }
         }
-        if (currentClass && !onbreak) {
-            let str = ""
-            Object.keys(data.one).forEach((key, index) => {
-                let obj = data.one[key]
-                let [prn, profname] = getprof(now.getDay(), currentClass, key, currentShiftName)
-                if(!profname) return;
-                let _toadd = ""
-                if(currentClass < 7) {
-                let [prn2, profname2] = getprof(now.getDay(), currentClass + 1, key, currentShiftName)
-                if(profname2) {
-                if(profname2 == profname) {_toadd = "🔁"} else {_toadd = `➡️ ${profname2}`}
-                }
+      } else {
+        cl.innerHTML = `${cts} | Sot nuk ka mësim!`;
+      }
+      if (currentClass && !onbreak) {
+        let str = "";
+        Object.keys(data.one).forEach((key, index) => {
+          let obj = data.one[key];
+          let [prn, profname] = getprof(
+            now.getDay(),
+            currentClass,
+            key,
+            currentShiftName
+          );
+          if (!profname) return;
+          let _toadd = "";
+          if (currentClass < 7) {
+            let [prn2, profname2] = getprof(
+              now.getDay(),
+              currentClass + 1,
+              key,
+              currentShiftName
+            );
+            if (profname2) {
+              if (profname2 == profname) {
+                _toadd = "🔁";
+              } else {
+                _toadd = `➡️ ${profname2}`;
               }
-                str = str + `<li>${key} | ${profname}${_toadd ?  " " + _toadd : ""}<li>\n`
-            })
-            list.innerHTML = str
-        }
+            }
+          }
+          str =
+            str + `<li>${key} | ${profname}${_toadd ? " " + _toadd : ""}<li>\n`;
+        });
+        list.innerHTML = str;
+      }
     }, 100);
-    </script>
+  </script>
 </html>

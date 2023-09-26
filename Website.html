@@ -549,24 +549,23 @@
 
     let _k = {
       "Ndërrimi 1": {
-        1: "Hamide Ejupi",
-        2: "Yllka Qerimi",
-        3: "Ilir Elezi",
-        4: "Rabije Demolli",
-        5: "Xhabir Ymeri",
+        1: "Lulijeta Latifi",
+        2: "Fahrije Srmaxhaj",
+        3: "Sadushe Agaj",
+        4: "Luljeta Shkodra",
+        5: "Magribe Neziri",
       },
       "Ndërrimi 2": {
-        1: "Mustafa Hoxha",
-        2: "Fahrije Sermaxhaj",
-        3: "Magribe Neziri",
-        4: "Sabedi Veseli",
-        5: "Luljeta Shkodra",
+        1: "Naser Morina",
+        2: "Agron Bislimi",
+        3: "Labinota Shabiu",
+        4: "Xhevahire Bislimi",
+        5: "Ibrahim Isufi",
       },
     };
     //h
     setInterval(() => {
       function getk(day, nd) {
-        return ", Kujdestari Jo i regjistruar";
         let kuj = _k[nd][day];
         if (!kuj) return;
         let nam = kuj.split(" ")[0].toLowerCase();
@@ -601,10 +600,12 @@
         return [num, pr];
       }
       let now = new Date();
-      // now = getNextDate(2, 12, 56, 0)
+    // now = getNextDate(2, 8, 16, 0)
       const dayOfWeek = now.getDay();
       const time = now.toLocaleTimeString("en-US", {
         hour12: false,
+        minute: "2-digit",
+        hour: "2-digit"
       });
       const currentShift =
         time >= shifts[0].startTime && time < shifts[1].startTime
@@ -613,9 +614,15 @@
       const currentShiftName = currentShift.name;
       let currentClass = null;
       for (let i = 0; i < currentShift.classes.length; i++) {
+        let sh = currentShift.classes[i].startTime.split(":")
+        let nd = new Date()
+        nd.setHours(Number(sh[0]), Number(sh[1]))
+        let en = currentShift.classes[i].endTime.split(":")
+        let nen = new Date()
+        nen.setHours(Number(en[0]), Number(en[1]))
         if (
-          time >= currentShift.classes[i].startTime &&
-          time < currentShift.classes[i].endTime
+          now >= nd &&
+           now < nen
         ) {
           currentClass = i + 1;
         }
@@ -632,7 +639,7 @@
         date2.setMinutes(minutes2);
         const timeDifference =
           (date2.getTime() - date1.getTime()) / (1000 * 60);
-        return Math.round(timeDifference);
+        return Math.abs(Math.round(timeDifference));
       }
       let onbreak = false;
       const times = [
@@ -739,7 +746,7 @@
           str =
             str + `<li>${key} | ${profname}${_toadd ? " " + _toadd : ""}<li>\n`;
         });
-        list.innerHTML = str + `<li>[ Made by Korab Arifi XI/1 ]<li>\n`;
+        list.innerHTML = str + `<li>[ Punoi: Korab Arifi | XI/1 ]<li>\n`;
       }
     }, 100);
   </script>
